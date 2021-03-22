@@ -24,7 +24,9 @@ namespace PrideWeddingAPI.Models
 
         public DbSet<VendorRegistration> Vendors { get; set; }
         public DbSet<Payment> Payments { get; set; }
-       
+
+        public DbSet<ClientLogin> ClientLogins { get; set; }
+
 
 
 
