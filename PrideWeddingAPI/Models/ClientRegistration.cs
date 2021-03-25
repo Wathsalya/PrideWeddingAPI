@@ -8,8 +8,6 @@ namespace PrideWeddingAPI.Models
 {
     public class ClientRegistration
     {
-        [Key]
-        public int ID { get; set; }
         public string ClientNIC { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

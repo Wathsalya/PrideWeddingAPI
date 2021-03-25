@@ -8,8 +8,6 @@ namespace PrideWeddingAPI.Models
 {
     public class VendorRegistration
     {
-        [Key]
-        public int ID { get; set; }
         public string CompanyName { get; set; }
 
         [DataType(DataType.PhoneNumber)]

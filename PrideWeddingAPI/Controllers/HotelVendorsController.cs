@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using PrideWeddingAPI.Models;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using PrideWeddingAPI.Data;
 
 namespace PrideWeddingAPI.Controllers
 {
@@ -15,10 +16,10 @@ namespace PrideWeddingAPI.Controllers
     [ApiController]
     public class HotelVendorsController : ControllerBase
     {
-        private readonly EmployeeDbContext _context;
+        private readonly WeddingDBContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public HotelVendorsController(EmployeeDbContext context, IWebHostEnvironment hostEnvironment)
+        public HotelVendorsController(WeddingDBContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             this._hostEnvironment = hostEnvironment;
@@ -84,7 +85,7 @@ namespace PrideWeddingAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!hotelVendorExists(id))
+                if (!HotelVendorExists(id))
                 {
                     return NotFound();
                 }
@@ -126,7 +127,7 @@ namespace PrideWeddingAPI.Controllers
             return hotelVendor;
         }
 
-        private bool hotelVendorExists(int id)
+        private bool HotelVendorExists(int id)
         {
             return _context.Hotels.Any(e => e.EmployeeID == id);
         }
