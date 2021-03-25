@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using PrideWeddingAPI.Models;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using PrideWeddingAPI.Data;
 
 namespace PrideWeddingAPI.Controllers
 {
@@ -15,10 +16,10 @@ namespace PrideWeddingAPI.Controllers
     [ApiController]
     public class PhotographyVendorsController : ControllerBase
     {
-        private readonly EmployeeDbContext _context;
+        private readonly WeddingDBContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
 
-        public PhotographyVendorsController(EmployeeDbContext context, IWebHostEnvironment hostEnvironment)
+        public PhotographyVendorsController(WeddingDBContext context, IWebHostEnvironment hostEnvironment)
         {
             _context = context;
             this._hostEnvironment = hostEnvironment;

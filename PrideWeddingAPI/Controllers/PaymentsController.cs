@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using PrideWeddingAPI.Data;
 using PrideWeddingAPI.Models;
 
 namespace PrideWeddingAPI.Controllers
@@ -14,9 +14,9 @@ namespace PrideWeddingAPI.Controllers
     [ApiController]
     public class PaymentsController : ControllerBase
     {
-        private readonly EmployeeDbContext _context;
+        private readonly WeddingDBContext _context;
 
-        public PaymentsController(EmployeeDbContext context)
+        public PaymentsController(WeddingDBContext context)
         {
             _context = context;
         }
