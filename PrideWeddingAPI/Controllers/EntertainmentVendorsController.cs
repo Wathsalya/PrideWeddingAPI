@@ -31,11 +31,11 @@ namespace PrideWeddingAPI.Controllers
         {
             return await _context.Entertainers
                 .Select(x => new EntertainmentVendor() { 
-                EmployeeID = x.EmployeeID,
-                EmployeeName = x.EmployeeName,
-                Occupation = x.Occupation,
-                Located_distric=x.Located_distric,
-                Located_province = x.Located_province,
+                CompanyID = x.CompanyID,
+                CompanyName = x.CompanyName,
+                CompanyCategory = x.CompanyCategory,
+                LocatedDistrict=x.LocatedDistrict,
+                LocatedProvince = x.LocatedProvince,
 				TelephoneNumber=x.TelephoneNumber,
 				CompanyWebsite=x.CompanyWebsite,
                 Min_package=x.Min_package,
@@ -66,7 +66,7 @@ namespace PrideWeddingAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutEntertainmentVendor(int id, [FromForm]EntertainmentVendor entertainmentVendor)
         {
-            if (id != entertainmentVendor.EmployeeID)
+            if (id != entertainmentVendor.CompanyID)
             {
                 return BadRequest();
             }
@@ -129,7 +129,7 @@ namespace PrideWeddingAPI.Controllers
 
         private bool EntertainmentVendorExists(int id)
         {
-            return _context.Entertainers.Any(e => e.EmployeeID == id);
+            return _context.Entertainers.Any(e => e.CompanyID == id);
         }
 
         [NonAction]
