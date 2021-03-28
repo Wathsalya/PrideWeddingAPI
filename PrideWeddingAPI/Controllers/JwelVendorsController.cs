@@ -31,11 +31,11 @@ namespace PrideWeddingAPI.Controllers
         {
             return await _context.Jwellers
                 .Select(x => new JwelVendor() { 
-                EmployeeID = x.EmployeeID,
-                EmployeeName = x.EmployeeName,
-                Occupation = x.Occupation,
-                Located_distric=x.Located_distric,
-                Located_province = x.Located_province,
+                CompanyID = x.CompanyID,
+                CompanyName = x.CompanyName,
+                CompanyCategory = x.CompanyCategory,
+                LocatedDistrict=x.LocatedDistrict,
+                LocatedProvince = x.LocatedProvince,
 				TelephoneNumber=x.TelephoneNumber,
 				CompanyWebsite=x.CompanyWebsite,
                 Min_package=x.Min_package,
@@ -66,7 +66,7 @@ namespace PrideWeddingAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutJwelVendor(int id, [FromForm]JwelVendor jwelVendor)
         {
-            if (id != jwelVendor.EmployeeID)
+            if (id != jwelVendor.CompanyID)
             {
                 return BadRequest();
             }
@@ -129,7 +129,7 @@ namespace PrideWeddingAPI.Controllers
 
         private bool JwelVendorExists(int id)
         {
-            return _context.Jwellers.Any(e => e.EmployeeID == id);
+            return _context.Jwellers.Any(e => e.CompanyID == id);
         }
 
         [NonAction]

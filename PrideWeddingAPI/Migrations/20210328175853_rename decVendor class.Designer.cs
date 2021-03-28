@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrideWeddingAPI.Data;
 
 namespace PrideWeddingAPI.Migrations
 {
     [DbContext(typeof(WeddingDBContext))]
-    partial class WeddingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210328175853_rename decVendor class")]
+    partial class renamedecVendorclass
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,15 +42,15 @@ namespace PrideWeddingAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "5dca5dad-3c9b-4cc6-bfd8-8fba0248d59b",
-                            ConcurrencyStamp = "7c8f5492-a4c9-42a6-9053-e323ff288878",
+                            Id = "98832d24-3582-47e2-9a73-2b1cc72191c5",
+                            ConcurrencyStamp = "89f2d28b-f621-48b8-87ab-69ca673cc71c",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "10627f2a-bb39-4314-9f96-c1b00de7c7a1",
-                            ConcurrencyStamp = "2aabf904-ec99-43a5-93db-f0414a7266c2",
+                            Id = "c34a00c9-3aa9-436f-ab89-6b1b36e7f98a",
+                            ConcurrencyStamp = "9e54734f-275f-476f-8e58-dfa936c01961",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -175,27 +177,24 @@ namespace PrideWeddingAPI.Migrations
 
             modelBuilder.Entity("PrideWeddingAPI.Models.EntertainmentVendor", b =>
                 {
-                    b.Property<int>("CompanyID")
+                    b.Property<int>("EmployeeID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CompanyCategory")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("CompanyWebsite")
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("EmployeeName")
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("LocatedDistrict")
+                    b.Property<string>("Located_distric")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("LocatedProvince")
+                    b.Property<string>("Located_province")
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Max_package")
@@ -204,37 +203,37 @@ namespace PrideWeddingAPI.Migrations
                     b.Property<string>("Min_package")
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Occupation")
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("TelephoneNumber")
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("CompanyID");
+                    b.HasKey("EmployeeID");
 
                     b.ToTable("Entertainers");
                 });
 
             modelBuilder.Entity("PrideWeddingAPI.Models.HotelVendor", b =>
                 {
-                    b.Property<int>("CompanyID")
+                    b.Property<int>("EmployeeID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CompanyCategory")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("CompanyWebsite")
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("EmployeeName")
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("LocatedDistrict")
+                    b.Property<string>("Located_distric")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("LocatedProvince")
+                    b.Property<string>("Located_province")
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Max_package")
@@ -243,37 +242,37 @@ namespace PrideWeddingAPI.Migrations
                     b.Property<string>("Min_package")
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Occupation")
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("TelephoneNumber")
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("CompanyID");
+                    b.HasKey("EmployeeID");
 
                     b.ToTable("Hotels");
                 });
 
             modelBuilder.Entity("PrideWeddingAPI.Models.JwelVendor", b =>
                 {
-                    b.Property<int>("CompanyID")
+                    b.Property<int>("EmployeeID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CompanyCategory")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("CompanyWebsite")
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("EmployeeName")
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("LocatedDistrict")
+                    b.Property<string>("Located_distric")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("LocatedProvince")
+                    b.Property<string>("Located_province")
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Max_package")
@@ -282,10 +281,13 @@ namespace PrideWeddingAPI.Migrations
                     b.Property<string>("Min_package")
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Occupation")
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("TelephoneNumber")
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("CompanyID");
+                    b.HasKey("EmployeeID");
 
                     b.ToTable("Jwellers");
                 });
@@ -316,27 +318,24 @@ namespace PrideWeddingAPI.Migrations
 
             modelBuilder.Entity("PrideWeddingAPI.Models.PhotographyVendor", b =>
                 {
-                    b.Property<int>("CompanyID")
+                    b.Property<int>("EmployeeID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CompanyCategory")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("CompanyWebsite")
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("EmployeeName")
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("LocatedDistrict")
+                    b.Property<string>("Located_distric")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("LocatedProvince")
+                    b.Property<string>("Located_province")
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Max_package")
@@ -345,37 +344,37 @@ namespace PrideWeddingAPI.Migrations
                     b.Property<string>("Min_package")
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Occupation")
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("TelephoneNumber")
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("CompanyID");
+                    b.HasKey("EmployeeID");
 
                     b.ToTable("Photographers");
                 });
 
             modelBuilder.Entity("PrideWeddingAPI.Models.SaloonVendor", b =>
                 {
-                    b.Property<int>("CompanyID")
+                    b.Property<int>("EmployeeID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CompanyCategory")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("CompanyWebsite")
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("EmployeeName")
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("LocatedDistrict")
+                    b.Property<string>("Located_distric")
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("LocatedProvince")
+                    b.Property<string>("Located_province")
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Max_package")
@@ -384,10 +383,13 @@ namespace PrideWeddingAPI.Migrations
                     b.Property<string>("Min_package")
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Occupation")
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("TelephoneNumber")
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("CompanyID");
+                    b.HasKey("EmployeeID");
 
                     b.ToTable("Saloons");
                 });

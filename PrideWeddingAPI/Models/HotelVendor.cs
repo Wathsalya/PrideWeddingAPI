@@ -13,19 +13,19 @@ namespace PrideWeddingAPI.Models
     public class HotelVendor
     {
         [Key]
-        public int EmployeeID { get; set; }
+        public int CompanyID { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
-        public string EmployeeName { get; set; }
+        public string CompanyName { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
-        public string Occupation { get; set; }
+        public string CompanyCategory { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
-        public string Located_distric { get; set; }
+        public string LocatedDistrict { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
-        public string Located_province { get; set; }
+        public string LocatedProvince { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
         public string Min_package { get; set; }
