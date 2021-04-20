@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrideWeddingAPI.Data;
 
 namespace PrideWeddingAPI.Migrations
 {
     [DbContext(typeof(WeddingDBContext))]
-    partial class WeddingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210419155758_Adding cart")]
+    partial class Addingcart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,15 +42,15 @@ namespace PrideWeddingAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "db78e288-b4a6-4dde-984f-ce7bc29e0605",
-                            ConcurrencyStamp = "67276abd-facc-447f-84fa-8a60f0404058",
+                            Id = "fc4790ab-8d3c-421e-b601-cd2fb4b2ec7a",
+                            ConcurrencyStamp = "aa5056d9-03b3-490b-aff3-285442ac2d80",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "a247516f-90b2-4368-8a89-7503a56bee14",
-                            ConcurrencyStamp = "e198ca51-4c88-403c-8799-c5ef2303a45f",
+                            Id = "1ab66a65-4d48-43fa-97b0-c52b3181b939",
+                            ConcurrencyStamp = "55dfe398-6ab2-4a53-8ea2-df10de8256e4",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -65,45 +67,6 @@ namespace PrideWeddingAPI.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.ToTable("IdentityUserRole<string>");
-                });
-
-            modelBuilder.Entity("PrideWeddingAPI.Models.AddingCart", b =>
-                {
-                    b.Property<int>("CompanyID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CompanyCategory")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("CompanyName")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("CompanyWebsite")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("ImageName")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("LocatedDistrict")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("LocatedProvince")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Max_package")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Min_package")
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("TelephoneNumber")
-                        .HasColumnType("nvarchar(100)");
-
-                    b.HasKey("CompanyID");
-
-                    b.ToTable("CartItems");
                 });
 
             modelBuilder.Entity("PrideWeddingAPI.Models.Client", b =>

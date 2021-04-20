@@ -30,6 +30,7 @@ namespace PrideWeddingAPI.Data
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
+        public DbSet<AddingCart> CartItems { get; set; }
 
 
 
