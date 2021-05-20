@@ -31,6 +31,7 @@ namespace PrideWeddingAPI.Data
         public DbSet<Client> Clients { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<AddingCart> CartItems { get; set; }
+        public DbSet<ContactFormDetails> ContactUS { get; set; }
 
 
 
