@@ -28,12 +28,9 @@ namespace PrideWeddingAPI.Models
         public string LocatedProvince { get; set; }
 
         [Column(TypeName = "nvarchar(50)")]
-        public string Min_package { get; set; }
+        public string Discount_package { get; set; }
 
-        [Column(TypeName = "nvarchar(50)")]
-        public string Max_package { get; set; }
-
-
+     
         [Column(TypeName = "nvarchar(100)")]
         public string ImageName { get; set; }
 

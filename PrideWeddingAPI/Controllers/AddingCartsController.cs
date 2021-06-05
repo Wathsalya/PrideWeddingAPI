@@ -38,8 +38,7 @@ namespace PrideWeddingAPI.Controllers
                 LocatedProvince = x.LocatedProvince,
                 TelephoneNumber=x.TelephoneNumber,
 				CompanyWebsite=x.CompanyWebsite,
-                Min_package=x.Min_package,
-                Max_package = x.Max_package,
+                Discount_package=x.Discount_package,  
                 ImageName = x.ImageName,
                 ImageSrc = String.Format("{0}://{1}{2}/Images/{3}",Request.Scheme,Request.Host,Request.PathBase,x.ImageName)
                 })
