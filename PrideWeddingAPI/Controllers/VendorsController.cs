@@ -8,52 +8,53 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace PrideWeddingAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ClientsController : ControllerBase
+    public class VendorsController : ControllerBase
     {
         private readonly WeddingDBContext _context;
 
-        public ClientsController(WeddingDBContext context)
+        public VendorsController(WeddingDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/Clients
+        // GET: api/Vendors
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Client>>> GetClients()
+        public async Task<ActionResult<IEnumerable<Vendor>>> GetVendors()
         {
-            return await _context.Clients.ToListAsync();
+            return await _context.Vendors.ToListAsync();
         }
 
-        // GET: api/Clients/5
+        // GET: api/Vendors/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Client>> GetClients(int id)
+        public async Task<ActionResult<Vendor>> GetVendor(int id)
         {
-            var client = await _context.Clients.FindAsync(id);
+            var vendor = await _context.Vendors.FindAsync(id);
 
-            if (client == null)
+            if (vendor == null)
             {
                 return NotFound();
             }
 
-            return client;
+            return vendor;
         }
 
-        // PUT: api/Clients/5
+        // PUT: api/Vendors/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutClient(int id, Client client)
+        public async Task<IActionResult> PutVendor(int id, Vendor vendor)
         {
-            if (id != client.ID)
+            if (id != vendor.ID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(client).State = EntityState.Modified;
+            _context.Entry(vendor).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +62,7 @@ namespace PrideWeddingAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ClientExists(id))
+                if (!VendorExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +75,37 @@ namespace PrideWeddingAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/Clients
+        // POST: api/Vendors
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Client>> PostClient(Client client)
+        public async Task<ActionResult<Vendor>> PostVendor(Vendor vendor)
         {
-            _context.Clients.Add(client);
+            _context.Vendors.Add(vendor);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetClient", new { id = client.ID }, client);
+            return CreatedAtAction("GetVendor", new { id = vendor.ID }, vendor);
         }
 
-        // DELETE: api/Clients/5
+        // DELETE: api/Vendors/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Client>> DeleteClient(int id)
+        public async Task<ActionResult<Vendor>> DeleteVendor(int id)
         {
-            var client = await _context.Clients.FindAsync(id);
-            if (client == null)
+            var vendor = await _context.Vendors.FindAsync(id);
+            if (vendor == null)
             {
                 return NotFound();
             }
 
-            _context.Clients.Remove(client);
+            _context.Vendors.Remove(vendor);
             await _context.SaveChangesAsync();
 
-            return client;
+            return vendor;
         }
 
-        private bool ClientExists(int id)
+        private bool VendorExists(int id)
         {
-            return _context.Clients.Any(e => e.ID == id);
+            return _context.Vendors.Any(e => e.ID == id);
         }
     }
 }

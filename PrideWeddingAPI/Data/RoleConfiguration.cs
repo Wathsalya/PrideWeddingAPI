@@ -15,9 +15,16 @@ namespace PrideWeddingAPI.Data
             builder.HasData(
             new IdentityRole
             {
-                Name = "Visitor",
-                NormalizedName = "VISITOR"
+                Name = "Client",
+                NormalizedName = "CLIENT"
             },
+
+             new IdentityRole
+             {
+                 Name = "Vendor",
+                 NormalizedName = "VENDOR"
+             },
+
             new IdentityRole
             {
                 Name = "Administrator",

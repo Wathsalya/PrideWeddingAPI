@@ -10,8 +10,8 @@ using PrideWeddingAPI.Data;
 namespace PrideWeddingAPI.Migrations
 {
     [DbContext(typeof(WeddingDBContext))]
-    [Migration("20210605094742_modify addingcart")]
-    partial class modifyaddingcart
+    [Migration("20210607104539_Creating Project")]
+    partial class CreatingProject
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -42,15 +42,22 @@ namespace PrideWeddingAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "e42805a3-b40c-4723-9c2f-8833264b7131",
-                            ConcurrencyStamp = "5e0850c3-0525-48dd-ba1f-f00a9e980a29",
-                            Name = "Visitor",
-                            NormalizedName = "VISITOR"
+                            Id = "eeab730d-9f7c-4a33-97fe-d65a762355d8",
+                            ConcurrencyStamp = "65a1e546-9946-40ec-983c-22b00cebe749",
+                            Name = "Client",
+                            NormalizedName = "CLIENT"
                         },
                         new
                         {
-                            Id = "0bd4d27c-3cd4-4b23-8585-a6c8908eb3be",
-                            ConcurrencyStamp = "16707a45-f0ff-46a5-abc9-a298907cd69c",
+                            Id = "5e5d4c0d-e193-4e32-a212-d8743ab4613c",
+                            ConcurrencyStamp = "5e236467-3565-4811-904f-3a810a24d7e0",
+                            Name = "Vendor",
+                            NormalizedName = "VENDOR"
+                        },
+                        new
+                        {
+                            Id = "cdfef57b-e170-42b5-a99a-635b6c5768c5",
+                            ConcurrencyStamp = "bbe51b61-d829-4683-97fb-c266555c9872",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -107,11 +114,10 @@ namespace PrideWeddingAPI.Migrations
 
             modelBuilder.Entity("PrideWeddingAPI.Models.Client", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
@@ -119,14 +125,8 @@ namespace PrideWeddingAPI.Migrations
                     b.Property<string>("ClientNIC")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ConcurrencyStamp")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -134,40 +134,13 @@ namespace PrideWeddingAPI.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
                     b.Property<string>("MobileNo")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("Clients");
                 });
@@ -352,6 +325,27 @@ namespace PrideWeddingAPI.Migrations
                     b.ToTable("Jwellers");
                 });
 
+            modelBuilder.Entity("PrideWeddingAPI.Models.NewsTeller", b =>
+                {
+                    b.Property<int>("SubscriberID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SubscriberID");
+
+                    b.ToTable("NewstellerSubscribers");
+                });
+
             modelBuilder.Entity("PrideWeddingAPI.Models.Payment", b =>
                 {
                     b.Property<int>("ID")
@@ -454,7 +448,7 @@ namespace PrideWeddingAPI.Migrations
                     b.ToTable("Saloons");
                 });
 
-            modelBuilder.Entity("PrideWeddingAPI.Models.Vendor", b =>
+            modelBuilder.Entity("PrideWeddingAPI.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -462,7 +456,7 @@ namespace PrideWeddingAPI.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Address")
+                    b.Property<string>("ClientNIC")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CompanyCategory")
@@ -479,6 +473,12 @@ namespace PrideWeddingAPI.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -504,9 +504,6 @@ namespace PrideWeddingAPI.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TelephoneNo")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
@@ -514,6 +511,33 @@ namespace PrideWeddingAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("PrideWeddingAPI.Models.Vendor", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CompanyCategory")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TelephoneNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ID");
 
                     b.ToTable("Vendors");
                 });

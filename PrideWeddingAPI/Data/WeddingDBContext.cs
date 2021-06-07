@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace PrideWeddingAPI.Data
 {
-    public class WeddingDBContext:DbContext
+    public class WeddingDBContext : DbContext
     {
-        public WeddingDBContext(DbContextOptions<WeddingDBContext> options):base(options)
+        public WeddingDBContext(DbContextOptions<WeddingDBContext> options) : base(options)
         {
 
         }
@@ -26,8 +26,9 @@ namespace PrideWeddingAPI.Data
         public DbSet<EntertainmentVendor> Entertainers { get; set; }
         public DbSet<PhotographyVendor> Photographers { get; set; }
         public DbSet<DecorationVendor> Decorators { get; set; }
-        public DbSet<HotelVendor> Hotels { get; set; }   
+        public DbSet<HotelVendor> Hotels { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<Vendor> Vendors { get; set; }
         public DbSet<AddingCart> CartItems { get; set; }

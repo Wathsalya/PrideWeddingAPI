@@ -10,12 +10,20 @@ namespace PrideWeddingAPI.Models
     {
         public MappingProfile()
         {
-            CreateMap<ClientRegistration, Client>()
-                .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email));
-            
-            
+            CreateMap<ClientRegistration, Client>();
+
+
+            CreateMap<ClientRegistration, User>()
+             .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email));
+
+
             CreateMap<VendorRegistration, Vendor>()
                 .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email));
+
+            CreateMap<VendorRegistration, User>()
+                .ForMember(u => u.UserName, opt => opt.MapFrom(x => x.Email));
+
+
         }
     }
 }
