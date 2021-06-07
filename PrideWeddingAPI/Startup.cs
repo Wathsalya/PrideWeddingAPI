@@ -38,15 +38,14 @@ namespace PrideWeddingAPI
         {
             services.AddDbContext<WeddingDBContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("WeddingDBContext")));
             services.AddControllers();
-            services.AddIdentity<Client, IdentityRole>().AddEntityFrameworkStores<WeddingDBContext>();
-            //services.AddIdentity<Vendor, IdentityRole>().AddEntityFrameworkStores<WeddingDBContext>();
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<WeddingDBContext>();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
             });
-            
+
             // JWT Configuration
             var jwtSettings = Configuration.GetSection("JwtSettings");
             services.AddAuthentication(opt =>
