@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PrideWeddingAPI.Data;
 
 namespace PrideWeddingAPI.Migrations
 {
     [DbContext(typeof(WeddingDBContext))]
-    partial class WeddingDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210606080918_Adding Newsteller")]
+    partial class AddingNewsteller
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,15 +42,15 @@ namespace PrideWeddingAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "52a71aa8-c990-4105-9965-c92f2ab3d62a",
-                            ConcurrencyStamp = "c9aa9140-dfa0-48c7-bf34-f30102436dca",
+                            Id = "5eb97031-657c-4571-a1b9-c68c17e90064",
+                            ConcurrencyStamp = "226397fe-0dec-43ed-882b-db053ef3411c",
                             Name = "Visitor",
                             NormalizedName = "VISITOR"
                         },
                         new
                         {
-                            Id = "f290ae63-ae8e-47ed-9f14-a65a65b7fc55",
-                            ConcurrencyStamp = "2ef16ce9-5e33-4de0-b4ce-e1edd40cd7e2",
+                            Id = "f62b196a-63f2-4450-b592-5f4f04b11b14",
+                            ConcurrencyStamp = "2b162bd1-273c-4098-be1f-7044a40c7159",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -352,12 +354,13 @@ namespace PrideWeddingAPI.Migrations
 
             modelBuilder.Entity("PrideWeddingAPI.Models.NewsTeller", b =>
                 {
-                    b.Property<int>("SubscriberID")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
@@ -366,7 +369,7 @@ namespace PrideWeddingAPI.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("SubscriberID");
+                    b.HasKey("ID");
 
                     b.ToTable("NewstellerSubscribers");
                 });

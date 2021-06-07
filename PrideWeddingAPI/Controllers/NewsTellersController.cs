@@ -12,48 +12,48 @@ namespace PrideWeddingAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContactFormDetailsController : ControllerBase
+    public class NewsTellersController : ControllerBase
     {
         private readonly WeddingDBContext _context;
 
-        public ContactFormDetailsController(WeddingDBContext context)
+        public NewsTellersController(WeddingDBContext context)
         {
             _context = context;
         }
 
-        // GET: api/ContactFormDetails
+        // GET: api/NewsTellers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ContactFormDetails>>> GetContactFormDetails()
+        public async Task<ActionResult<IEnumerable<NewsTeller>>> GetNewsTeller()
         {
-            return await _context.ContactUS.ToListAsync();
+            return await _context.NewstellerSubscribers.ToListAsync();
         }
 
-        // GET: api/ContactFormDetails/5
+        // GET: api/NewsTellers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ContactFormDetails>> GetContactFormDetails(int id)
+        public async Task<ActionResult<NewsTeller>> GetNewsTeller(int id)
         {
-            var contact = await _context.ContactUS.FindAsync(id);
+            var newsteller = await _context.NewstellerSubscribers.FindAsync(id);
 
-            if (contact == null)
+            if (newsteller == null)
             {
                 return NotFound();
             }
 
-            return contact;
+            return newsteller;
         }
 
-        // PUT: api/ContactFormDetails/5
+        // PUT: api/NewsTellers/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutContactFormDetails(int id, ContactFormDetails contact)
+        public async Task<IActionResult> PutNewsTeller(int id, NewsTeller newsteller)
         {
-            if (id != contact.ID)
+            if (id != newsteller.SubscriberID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(contact).State = EntityState.Modified;
+            _context.Entry(newsteller).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace PrideWeddingAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ContactFormDetailsExists(id))
+                if (!NewsTellerExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace PrideWeddingAPI.Controllers
             return NoContent();
         }
 
-        // POST: api/ContactFormDetails
+        // POST: api/NewsTellers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<ContactFormDetails>> PostContactFormDetails(ContactFormDetails contact)
+        public async Task<ActionResult<NewsTeller>> PostNewsTeller(NewsTeller newsteller)
         {
-            _context.ContactUS.Add(contact);
+            _context.NewstellerSubscribers.Add(newsteller);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetContactFormDetails", new { id = contact.ID }, contact);
+            return CreatedAtAction("GetNewsTeller", new { id = newsteller.SubscriberID }, newsteller);
         }
 
-        // DELETE: api/ContactFormDetails/5
+        // DELETE: api/NewsTellers/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ContactFormDetails>> DeleteContactFormDetails(int id)
+        public async Task<ActionResult<NewsTeller>> DeleteNewsTeller(int id)
         {
-            var contact = await _context.ContactUS.FindAsync(id);
-            if (contact == null)
+            var newsteller = await _context.NewstellerSubscribers.FindAsync(id);
+            if (newsteller == null)
             {
                 return NotFound();
             }
 
-            _context.ContactUS.Remove(contact);
+            _context.NewstellerSubscribers.Remove(newsteller);
             await _context.SaveChangesAsync();
 
-            return contact;
+            return newsteller;
         }
 
-        private bool ContactFormDetailsExists(int id)
+        private bool NewsTellerExists(int id)
         {
-            return _context.ContactUS.Any(e => e.ID == id);
+            return _context.NewstellerSubscribers.Any(e => e.SubscriberID == id);
         }
     }
 }
