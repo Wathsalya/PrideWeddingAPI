@@ -9,6 +9,8 @@ using PrideWeddingAPI.Models;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using PrideWeddingAPI.Data;
+using Microsoft.Azure.Storage;
+using Microsoft.Azure.Storage.Blob;
 
 namespace PrideWeddingAPI.Controllers
 {
@@ -16,6 +18,8 @@ namespace PrideWeddingAPI.Controllers
     [ApiController]
     public class DecorationVendorsController : ControllerBase
     {
+        CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=pridewedding;AccountKey=VSV77ls5Ansp9Ro7CQvs/026Ptwr9URXsWqI1M++c0KucDWWt7mwfj/YkZAwqRRrR/iejH/6/QX9xt4/YrtZIA==;EndpointSuffix=core.windows.net");
+
         private readonly WeddingDBContext _context;
         private readonly IWebHostEnvironment _hostEnvironment;
 
@@ -41,7 +45,7 @@ namespace PrideWeddingAPI.Controllers
                 Min_package=x.Min_package,
                 Max_package = x.Max_package,
                 ImageName = x.ImageName,
-                ImageSrc = String.Format("{0}://{1}{2}/Images/{3}",Request.Scheme,Request.Host,Request.PathBase,x.ImageName)
+                ImageSrc = String.Format("https://pridewedding.blob.core.windows.net/pridecontainer/{0}", x.ImageName)
                 })
                 .ToListAsync();
         }
@@ -135,14 +139,30 @@ namespace PrideWeddingAPI.Controllers
         [NonAction]
         public async Task<string> SaveImage(IFormFile imageFile)
         {
-            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).Take(10).ToArray()).Replace(' ', '-');
-            imageName = imageName + DateTime.Now.ToString("yymmssfff") + Path.GetExtension(imageFile.FileName);
+            string imageName = new String(Path.GetFileNameWithoutExtension(imageFile.FileName).ToArray());
+            imageName = imageName + Path.GetExtension(imageFile.FileName);
             var imagePath = Path.Combine(_hostEnvironment.ContentRootPath, "Images", imageName);
-            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            //using (var fileStream = new FileStream(imagePath, FileMode.Create))
             {
-                await imageFile.CopyToAsync(fileStream);
+                await UploadToAzureAsync(imageFile);
             }
             return imageName;
+        }
+        private async Task UploadToAzureAsync(IFormFile imageFile)
+        {
+            var cloudBlobClient = cloudStorageAccount.CreateCloudBlobClient();
+
+            var cloudBlobContainer = cloudBlobClient.GetContainerReference("pridecontainer");
+
+            if (await cloudBlobContainer.CreateIfNotExistsAsync())
+            {
+                await cloudBlobContainer.SetPermissionsAsync(new BlobContainerPermissions { PublicAccess = BlobContainerPublicAccessType.Container });
+            }
+
+            var cloudBlockBlob = cloudBlobContainer.GetBlockBlobReference(imageFile.FileName);
+            cloudBlockBlob.Properties.ContentType = imageFile.ContentType;
+
+            await cloudBlockBlob.UploadFromStreamAsync(imageFile.OpenReadStream());
         }
 
         [NonAction]
